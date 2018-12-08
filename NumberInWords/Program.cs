@@ -24,7 +24,7 @@ namespace NumberInWords
     {
         private string x;
         private long y;
-        bool male = true;
+        private bool male = true;
 
         public Translator(string x)
         {
@@ -101,7 +101,7 @@ namespace NumberInWords
                 {
                     z = y / 1000000;
                     res += pluralForms(z, WordSamples.millions);
-                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
+                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
                     if (z > 0)
                     {
                         male = false;
@@ -115,12 +115,12 @@ namespace NumberInWords
                 {
                     z = y / 1000000000;
                     res += pluralForms(z, WordSamples.billions);
-                    z = y / 1000000 - y / 1000000000 * 1000; // âûäåëÿåì ìèëëèîíû
+                    z = y / 1000000 - y / 1000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã®Ã­Ã»
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.millions);
                     }
-                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
+                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
                     if (z > 0)
                     {
                         male = false;
@@ -134,17 +134,17 @@ namespace NumberInWords
                 {
                     z = y / 1000000000000;
                     res += pluralForms(z, WordSamples.trillions);
-                    z = y / 1000000000 - y / 1000000000000 * 1000; // âûäåëÿåì ìèëëèàðäû
+                    z = y / 1000000000 - y / 1000000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã Ã°Ã¤Ã»
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.billions);
                     }
-                    z = y / 1000000 - y / 1000000000 * 1000; // âûäåëÿåì ìèëëèîíû
+                    z = y / 1000000 - y / 1000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã®Ã­Ã»
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.millions);
                     }
-                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
+                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
                     if (z > 0)
                     {
                         male = false;
