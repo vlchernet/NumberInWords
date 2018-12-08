@@ -49,6 +49,10 @@ namespace NumberInWords
             {
                 Console.WriteLine(fe.Message);
             }
+            catch (OverflowException oe)
+            {
+                Console.WriteLine(oe.Message);
+            }
             return res;
         }
 
