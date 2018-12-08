@@ -11,7 +11,6 @@ namespace NumberInWords
             {
                 Console.WriteLine("Input your number please: ");
                 x = Console.ReadLine();
-                if (Translator.StringToInt(x) < 0) Console.WriteLine("Use positive values.");
                 Translator tr = new Translator(x);
                 Console.WriteLine(tr.convertUtility(tr.getY()));
                 Console.WriteLine("Next number? (y/n)");
@@ -38,12 +37,16 @@ namespace NumberInWords
             return y;
         }
 
-        public static long StringToInt(string x)
+        private long StringToInt(string x)
         {
             long res = -1;
             try
             {
                 res = Convert.ToInt64(x);
+                if (res < 0)
+                {
+                    Console.WriteLine("Use positive values.");
+                }
             }
             catch (FormatException fe)
             {
@@ -98,7 +101,7 @@ namespace NumberInWords
                 {
                     z = y / 1000000;
                     res += pluralForms(z, WordSamples.millions);
-                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
+                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
                     if (z > 0)
                     {
                         male = false;
@@ -112,12 +115,12 @@ namespace NumberInWords
                 {
                     z = y / 1000000000;
                     res += pluralForms(z, WordSamples.billions);
-                    z = y / 1000000 - y / 1000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã®Ã­Ã»
+                    z = y / 1000000 - y / 1000000000 * 1000; // âûäåëÿåì ìèëëèîíû
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.millions);
                     }
-                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
+                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
                     if (z > 0)
                     {
                         male = false;
@@ -131,17 +134,17 @@ namespace NumberInWords
                 {
                     z = y / 1000000000000;
                     res += pluralForms(z, WordSamples.trillions);
-                    z = y / 1000000000 - y / 1000000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã Ã°Ã¤Ã»
+                    z = y / 1000000000 - y / 1000000000000 * 1000; // âûäåëÿåì ìèëëèàðäû
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.billions);
                     }
-                    z = y / 1000000 - y / 1000000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¬Ã¨Ã«Ã«Ã¨Ã®Ã­Ã»
+                    z = y / 1000000 - y / 1000000000 * 1000; // âûäåëÿåì ìèëëèîíû
                     if (z > 0)
                     {
                         res += " " + pluralForms(z, WordSamples.millions);
                     }
-                    z = y / 1000 - y / 1000000 * 1000; // Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã²Ã»Ã±Ã¿Ã·Ã¨
+                    z = y / 1000 - y / 1000000 * 1000; // âûäåëÿåì òûñÿ÷è
                     if (z > 0)
                     {
                         male = false;
