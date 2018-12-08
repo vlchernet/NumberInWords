@@ -152,12 +152,10 @@ namespace NumberInWords
         private string pluralForms(long z, string[] decpl)
         {
             string res = "";
-            //male = false;
             res += convertUtility(z);
             if (z == 1 || z % 10 == 1 && z != 11 && (z - z / 100 * 100) != 11) res += " " + decpl[1];
             else if (z % 10 > 0 && (z < 5 || z % 10 < 5 && (z - z / 100 * 100) / 10 != 1)) res += " " + decpl[2];
             else res += " " + decpl[3];
-            //male = true;
             return res;
         }
 
