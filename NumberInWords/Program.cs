@@ -11,6 +11,7 @@ namespace NumberInWords
             {
                 Console.WriteLine("Input your number please: ");
                 x = Console.ReadLine();
+                if (Translator.StringToInt(x) < 0) Console.WriteLine("Use positive values.");
                 Translator tr = new Translator(x);
                 Console.WriteLine(tr.convertUtility(tr.getY()));
                 Console.WriteLine("Next number? (y/n)");
@@ -37,7 +38,7 @@ namespace NumberInWords
             return y;
         }
 
-        private long StringToInt(string x)
+        public static long StringToInt(string x)
         {
             long res = -1;
             try
