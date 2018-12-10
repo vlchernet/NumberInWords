@@ -62,100 +62,83 @@ namespace NumberInWords
         public string convertUtility(long y)
         {
             string res = "";
-            if (y >= 0)
+            long z = 0;
+            if (y >= 1e12)
             {
-                long z = 0;
-                if (y < 20) res += Parser(y);
-                else
-                if (y < 100)
+                z = y / (long)1e12;
+                res += pluralForms(z, WordSamples.trillions);
+                z = y % (long)1e12;
+                if (z > 0)
                 {
-                    res += Parser(y / 10 * 10);
-                    res += " " + Parser(y % 10);
+                    res += " " + convertUtility(z);
+                }
+            }
+            else
+            {
+                if (y >= 1e9)
+                {
+                    z = y / (long)1e9;
+                    res += pluralForms(z, WordSamples.billions);
+                    z = y % (long)1e9;
+                    if (z > 0)
+                    {
+                        res += " " + convertUtility(z);
+                    }
                 }
                 else
-                if (y < 1000)
                 {
-                    res += Parser(y / 100 * 100);
-                    if (y % 100 >= 20)
+                    if (y >= 1e6)
                     {
-                        res += " " + Parser(y / 10 * 10 - y / 100 * 100);
-                        res += " " + Parser(y % 10);
+                        z = y / (long)1e6;
+                        res += pluralForms(z, WordSamples.millions);
+                        z = y % (long)1e6;
+                        if (z > 0)
+                        {
+                            res += " " + convertUtility(z);
+                        }
                     }
                     else
-                        res += " " + Parser(y % 100);
-                }
-                else
-                if (y < 1e6)
-                {
-                    z = y / 1000;
-                    if (z > 0)
                     {
-                        male = false;
-                        res += pluralForms(z, WordSamples.thousands);
-                        male = true;
+                        if (y >= 1e3)
+                        {
+                            z = y / (long)1e3;
+                            male = false;
+                            res += pluralForms(z, WordSamples.thousands);
+                            male = true;
+                            z = y % (long)1e3;
+                            if (z > 0)
+                            {
+                                res += " " + convertUtility(z);
+                            }
+                        }
+                        else {
+                            if (y >= 0)
+                            {
+                                if (y < 20) res += Parser(y);
+                                else
+                                if (y < 100)
+                                {
+                                    res += Parser(y / 10 * 10);
+                                    res += " " + Parser(y % 10);
+                                }
+                                else
+                                {
+                                    res += Parser(y / 100 * 100);
+                                    if (y % 100 >= 20)
+                                    {
+                                        res += " " + Parser(y / 10 * 10 - y / 100 * 100);
+                                        res += " " + Parser(y % 10);
+                                    }
+                                    else
+                                    res += " " + Parser(y % 100);
+                                }
+                            }
+                        }
                     }
-                    res += " " + convertUtility(y % 1000);
-                }
-                else
-                if (y < 1e9)
-                {
-                    z = y / 1000000;
-                    res += pluralForms(z, WordSamples.millions);
-                    z = y / 1000 - y / 1000000 * 1000; // выделяем миллионы
-                    if (z > 0)
-                    {
-                        male = false;
-                        res += " " + pluralForms(z, WordSamples.thousands);
-                        male = true;
-                    }
-                    res += " " + convertUtility(y % 1000);
-                }
-                else
-                if (y < 1e12)
-                {
-                    z = y / 1000000000;
-                    res += pluralForms(z, WordSamples.billions);
-                    z = y / 1000000 - y / 1000000000 * 1000; // выделяем миллионы
-                    if (z > 0)
-                    {
-                        res += " " + pluralForms(z, WordSamples.millions);
-                    }
-                    z = y / 1000 - y / 1000000 * 1000; // выделяем тысячи
-                    if (z > 0)
-                    {
-                        male = false;
-                        res += " " + pluralForms(z, WordSamples.thousands);
-                        male = true;
-                    }
-                    res += " " + convertUtility(y % 1000);
-                }
-                else
-                if (y < 1e15)
-                {
-                    z = y / 1000000000000;
-                    res += pluralForms(z, WordSamples.trillions);
-                    z = y / 1000000000 - y / 1000000000000 * 1000; // выделяем миллиарды
-                    if (z > 0)
-                    {
-                        res += " " + pluralForms(z, WordSamples.billions);
-                    }
-                    z = y / 1000000 - y / 1000000000 * 1000; // выделяем миллионы
-                    if (z > 0)
-                    {
-                        res += " " + pluralForms(z, WordSamples.millions);
-                    }
-                    z = y / 1000 - y / 1000000 * 1000; // выделяем тысячи
-                    if (z > 0)
-                    {
-                        male = false;
-                        res += " " + pluralForms(z, WordSamples.thousands);
-                        male = true;
-                    }
-                    res += " " + convertUtility(y % 1000);
                 }
             }
             return res;
-        }
+        } 
 
         private string pluralForms(long z, string[] decpl)
         {
@@ -210,3 +193,4 @@ namespace NumberInWords
         }
     }
 }
+
